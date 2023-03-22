@@ -74,7 +74,7 @@ df_sect.iloc[::5, :].plot( kind='bar', ax=ax,
 
 แหล่งที่มา: กระทรวงพลังงาน
 
-จากกราฟของปริมาณ CO2 ที่เกิดขึ้น จำแนกตามประเภทกิจกรรม อันได้แก่ Power Generation, Industry, Transport, Other ในปี 1997 – 2022 พบว่า CO2 ที่เกิดจาก Power Generation, Industry, Transport มีแนวโน้มที่เพิ่มสูงขึ้น โดย Power Generation มีแนวโน้มที่เพิ่มสูงขึ้นจนถึงปี 2012 หลังจากนั้นมีแนวโน้มที่ทรงตัวจนลดลงมาในปี 2022 แต่ก็ยังคงเป็นกิจกรรมที่ทำให้เกิด CO2 อันดับ 1  
+จากกราฟของปริมาณ CO2 ที่เกิดขึ้น จำแนกตามประเภทกิจกรรม อันได้แก่ Power Generation, Industry, Transport, Other ในปี 1997 – 2022 พบว่า CO2 ที่เกิดจาก Power Generation, Industry, Transport มีแนวโน้มที่เพิ่มสูงขึ้น โดย Power Generation มีแนวโน้มที่เพิ่มสูงขึ้นจนถึงปี 2012 หลังจากนั้นมีแนวโน้มที่ทรงตัวจนลดลงมาในปี 2022 แต่อย่างไร Power Generation ก็ยังคงเป็นกิจกรรมที่ทำให้เกิด CO2 สูงที่สุด
 
 ```Python
 sns.set(rc={'figure.dpi':150})
