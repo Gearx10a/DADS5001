@@ -10,7 +10,9 @@
 ![image](https://user-images.githubusercontent.com/119307197/226912477-852bd0e9-5f4f-400f-8bff-e459305d054b.png)
 
 รูปที่ 1 อัตราการเปลี่ยนแปลงของปริมาณการผลิตพลังงานจาก Natural Gas กับ Renewable 
+
 แหล่งที่มา: กระทรวงพลังงาน
+
 จากกราฟจะเห็นได้ว่า เส้น Renewable มีการแกว่งตัวที่สูงกว่าของเส้น Natural Gas แสดงให้เห็นว่าการจะคาดการณ์ของปริมาณการผลิตพลังงานจาก Renewable ทำได้ยากกว่าของ Natural Gas เนื่องจากการแกว่งตัวที่สูงของเส้น Renewable
 
 ```Python
@@ -113,7 +115,7 @@ corr_CO2 = df_merg_co2.corr().round(2)
 sns.heatmap(corr_CO2, annot = True) 
 
 ```
-![image](https://user-images.githubusercontent.com/119307197/226206342-f38274d3-df19-4611-8137-2a448edecb7d.png)
+![image](https://user-images.githubusercontent.com/119307197/226932426-346bf556-3b59-4c50-bba3-fcf5130b0e46.png)
 
 รูปที่ 4 Correlation ของปริมาณพลังงานกับปริมาณ CO2 ที่จำแนกตามประเภทกิจกรรม
 
