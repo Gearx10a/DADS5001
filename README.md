@@ -5,8 +5,54 @@
 2. สถานการณ์ตลาดซื้อขายพลังงานสะอาด
 3. คำนวณ ความคุ้มค่าของการลงทุนใน Solar Rooftop อย่างไร
 
-# ความสัมพันธ์ของ พลังงาน กับ CO2 
+#Install
+```Python
+import sys
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+import numpy_financial as npf
+from pandas import Series, DataFrame
+```
 
+# ความสัมพันธ์ของ พลังงาน กับ CO2 
+```Python
+data_01_00 = pd.read_csv('01_Power.csv')
+data_01_00['Type'].fillna(method='ffill', inplace = True)
+#display(data_01_00)
+
+df_ener = pd.DataFrame(set(data_01_00['Date']), columns=['Year'])
+df_ener['Hydro'] = list(data_01_00[data_01_00['Type'].str.match('Hydro')]['Volume'])
+df_ener['Fuel Oil'] = list(data_01_00[data_01_00['Type'].str.match('Fuel Oil')]['Volume'])
+df_ener['Lignite'] = list(data_01_00[data_01_00['Type'].str.match('Lignite')]['Volume'])
+df_ener['Natural Gas'] = list(data_01_00[data_01_00['Type'].str.match('Natural Gas')]['Volume'])
+df_ener['Diesel'] = list(data_01_00[data_01_00['Type'].str.match('Diesel')]['Volume'])
+df_ener['Imported'] = list(data_01_00[data_01_00['Type'].str.match('Imported')]['Volume'])
+df_ener['Renewable'] = list(data_01_00[data_01_00['Type'].str.match('Renewable')]['Volume'])
+col = df_ener.columns.values.tolist()[1:]
+df_ener['Energy'] = df_ener[col].sum(axis = 1)
+#display(df_ener)
+
+data_01_00.dropna(inplace = True)
+df_ener['g_natural'] = df_ener['Natural Gas'].pct_change()
+df_ener['g_renew'] = df_ener['Renewable'].pct_change()
+df_ener.dropna(inplace = True)
+df_ener.drop([2], axis = 0, inplace = True)
+#display(df_ener)
+
+plt.plot(df_ener['Year'], df_ener['g_natural'], color = "r",marker = "o", markersize = 4, label="Natural Gas")
+plt.plot(df_ener['Year'], df_ener['g_renew'], color = "g",marker = "o", markersize = 4, label="Renewable")
+
+plt.legend(loc="upper left")
+plt.ylim(-1.0, 2.0)
+plt.title('Change Rate of Power Generation')
+plt.xlabel('Year')
+plt.ylabel('Change Rate')
+
+plt.show()
+```
 ![image](https://user-images.githubusercontent.com/119307197/226912477-852bd0e9-5f4f-400f-8bff-e459305d054b.png)
 
 รูปที่ 1 อัตราการเปลี่ยนแปลงของปริมาณการผลิตพลังงานจาก Natural Gas กับ Renewable 
@@ -444,4 +490,4 @@ print(tabulate(data, head, tablefmt = 'psql', floatfmt = ',.0f', numalign = 'rig
 
 แสดงให้เห็นได้ว่า การลงทุนในการติดตั้ง Solar Rooftop ของผู้ใช้ไฟฟ้ารายนี้นั้นมีความคุ้มค่าน่าลงทุน ทั้งนี้ข้อมูลนี้เป็นการคำนวณของผู้ใช้ไฟฟ้ารายนี้เท่านั้น ซึ่งอาจมิได้นำไปอนุมาณแทนกลุ่มประชากรผู้ใช้ไฟฟ้าได้ เป็นเพียงแนวทางให้เห็นภาพการลงทุนสำหรับคนที่ต้องการเข้ามาเป็นผู้ผลิตพลังงานสะอาดรายเล็กเท่านั้น
 
-ขณะเดียวกัน สำหรับผู้ที่ต้องการลงทุนใน Solar Rooftop ที่มีค่าหน่วยการใช้ไฟฟ้าต่อวันในช่วงที่มีแสงอาทิตย์ประมาณ 4.15 กิโลวัตต์ต่อวัน ค่าเฉลี่ยอัตราค่าไฟฟ้าประมาณ 4.48 บาทต่อหน่วย และเลือกที่จะใช้กำลังการผลิต 5 กิโลวัตต์ต่อวัน ก็สามารถนำการวิเคราะห์ความคุ้มค่าในการลงทุนนี้ไปเป็นทางประเมินความคุ้มค่าของตนเองได้
+ขณะเดียวกัน สำหรับผู้ที่ต้องการลงทุนใน Solar Rooftop ที่มีค่าหน่วยการใช้ไฟฟ้าต่อวันในช่วงที่มีแสงอาทิตย์ประมาณ 4.15 กิโลวัตต์ต่อวัน ค่าเฉลี่ยอัตราค่าไฟฟ้าประมาณ 4.48 บาทต่อหน่วย และเลือกที่จะใช้กำลังการผลิต 5 กิโลวัตต์ต่อวัน ก็สามารถนำการวิเคราะห์ความคุ้มค่าในการลงทุนนี้ไปเป็นแนวทางประเมินความคุ้มค่าของตนเองได้
