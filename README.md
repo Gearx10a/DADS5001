@@ -343,6 +343,8 @@ sns.relplot( kind='scatter',          # default:'scatter'
             ) 
 ```
 ![image](https://user-images.githubusercontent.com/119307197/226206545-9368a682-e398-4806-a54e-a9148ab59943.png)
+![image](https://user-images.githubusercontent.com/119307197/226996284-0d16c037-9015-4868-884e-51ac06e74523.png)
+
  
 รูปที่ 10 ความสัมพันธ์ของค่าไฟฟ้ากับหน่วยพลังงาน จำแนกตามแหล่งการผลิตพลังงานสะอาด
 
